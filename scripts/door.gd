@@ -24,12 +24,12 @@ var _timer := 0.0
 
 
 func _ready() -> void:
-	var points := PackedVector2Array(
+	var points := PackedVector2Array([
 		Vector2.ZERO,
 		Vector2(size.x, 0.0),
 		size,
 		Vector2(0.0, size.y)
-	)
+	])
 	_visual.polygon = points
 
 	var rect := RectangleShape2D.new()

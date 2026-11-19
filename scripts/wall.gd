@@ -10,12 +10,12 @@ extends StaticBody2D
 
 
 func _ready() -> void:
-	_visual.polygon = PackedVector2Array(
+	_visual.polygon = PackedVector2Array([
 		Vector2.ZERO,
 		Vector2(size.x, 0.0),
 		size,
 		Vector2(0.0, size.y)
-	)
+	])
 	var rect := RectangleShape2D.new()
 	rect.size = size
 	_shape.shape = rect
