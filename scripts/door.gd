@@ -14,6 +14,7 @@ const COLOR_CLOSED := Color(0.75, 0.15, 0.15, 1.0)
 @export var open_time := 3.5
 @export var warning_time := 1.2
 @export var closed_time := 2.3
+@export var squish_damage := 50.0
 
 var _state := State.OFFEN
 var _timer := 0.0
@@ -79,5 +80,5 @@ func _set_state(next: State) -> void:
 
 func _squish_overlapping_flies() -> void:
 	for body in _trigger.get_overlapping_bodies():
-		if body.is_in_group("fly"):
-			body.die()
+		if body.is_in_group("fly") and body.has_method("damage"):
+			body.damage(squish_damage, global_position)

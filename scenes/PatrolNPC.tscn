@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/patrol_npc.gd" id="1_npc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_touch"]
+radius = 26.0
 
 [node name="PatrolNPC" type="Node2D"]
 script = ExtResource("1_npc")
@@ -18,3 +21,9 @@ polygon = PackedVector2Array(-7, -12, 7, -12, 9, 2, -9, 2)
 [node name="Schuhe" type="Polygon2D" parent="Visual"]
 color = Color(0.15, 0.15, 0.15, 1)
 polygon = PackedVector2Array(-11, 22, 0, 22, 0, 27, -15, 27)
+
+[node name="TouchSensor" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="TouchSensor"]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_touch")

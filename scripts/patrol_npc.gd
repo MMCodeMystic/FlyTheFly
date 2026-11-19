@@ -5,16 +5,24 @@ extends Node2D
 @export var waypoints: Array[Vector2] = [Vector2(120, 500), Vector2(460, 500)]
 @export var speed := 130.0
 @export var pause_time := 2.0
+@export var touch_damage := 10.0
 
 var _target_index := 0
 var _waiting := false
 var _timer := 0.0
 
 @onready var _visual: Node2D = $Visual
+@onready var _touch_sensor: Area2D = $TouchSensor
 
 
 func _ready() -> void:
 	_face_toward(waypoints[_target_index])
+	_touch_sensor.body_entered.connect(_on_touch_sensor_body_entered)
+
+
+func _on_touch_sensor_body_entered(body: Node2D) -> void:
+	if body.is_in_group("fly") and body.has_method("damage"):
+		body.damage(touch_damage, global_position)
 
 
 func _process(delta: float) -> void:

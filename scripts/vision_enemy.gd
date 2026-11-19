@@ -14,6 +14,7 @@ enum State { SCAN, ALARM, JAGD, RUECKKEHR }
 @export var chase_speed := 230.0
 @export var return_speed := 120.0
 @export var give_up_time := 3.0
+@export var catch_damage := 50.0
 
 var _state := State.SCAN
 var _sweep := 0.0
@@ -119,5 +120,5 @@ func _on_vision_body_entered(body: Node2D) -> void:
 
 
 func kill_fly_if_caught(body: Node2D) -> void:
-	if body.is_in_group("fly"):
-		body.die()
+	if body.is_in_group("fly") and body.has_method("damage"):
+		body.damage(catch_damage, global_position)
