@@ -19,3 +19,11 @@ Format orientiert an [Keep a Changelog](https://keepachangelog.com/de/), Version
 ### Technik
 - Godot 4.x, reines GDScript, keine externen Abhängigkeiten oder Assets (alle Grafiken sind code-erzeugte Polygone).
 - Alle Scripts durch `gdparse`/`gdlint` (gdtoolkit) ohne Fehler und Warnungen.
+
+## [0.2.0] – Gesundheitssystem
+
+### Hinzugefügt
+- **Gesundheit (100 HP) für die Fliege** mit `health`-Wert, `health_changed`-Signal, Kurzzeit-Unverwundbarkeit (1 s) mit Rot-Blinken und Rückstoß vom Verursacher weg.
+- **Schadensquellen:** Rempeln gegen den Menschen (10 Schaden, Kreis-Sensor um den NPC), Fang durch die Spinne im Jagdmodus (50 Schaden – "die Hälfte weg"), von der zuschnappenden Tür erwischt (50 Schaden). Erst bei 0 HP stirbt die Fliege und das Level startet neu.
+- **HealthBar im HUD** (roter Balken über der Ausdauer-Anzeige).
+- Schadenswerte aller Quellen als Export-Variable im Inspector einstellbar (`touch_damage`, `catch_damage`, `squish_damage`).
