@@ -38,7 +38,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	match _state:
 		State.SCAN:
-			_sweep(delta)
+			_sweep_head(delta)
 		State.ALARM:
 			_timer -= delta
 			if _timer <= 0.0:
@@ -52,7 +52,7 @@ func _physics_process(delta: float) -> void:
 				_cone_visual.modulate = Color(1, 1, 1, 0.22)
 
 
-func _sweep(delta: float) -> void:
+func _sweep_head(delta: float) -> void:
 	if _timer > 0.0:
 		_timer -= delta
 		return
