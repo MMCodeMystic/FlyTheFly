@@ -57,6 +57,7 @@ func die() -> void:
 
 
 func _flutter_wings() -> void:
-	var flap := 1.0 + 0.35 * absf(sin(Time.total_runtime * 30.0))
+	var elapsed := Time.get_ticks_msec() / 1000.0
+	var flap := 1.0 + 0.35 * absf(sin(elapsed * 30.0))
 	_wings.scale = Vector2(1.0, flap)
-	_wings.rotation = sin(Time.total_runtime * 20.0) * 0.15
+	_wings.rotation = sin(elapsed * 20.0) * 0.15

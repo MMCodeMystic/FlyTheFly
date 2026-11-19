@@ -49,7 +49,7 @@ func _physics_process(delta: float) -> void:
 			if _timer <= 0.0:
 				_set_state(State.WARNUNG)
 		State.WARNUNG:
-			_visual.modulate.a = 0.5 + 0.5 * absf(sin(Time.total_runtime * 12.0))
+			_visual.modulate.a = 0.5 + 0.5 * absf(sin(Time.get_ticks_msec() * 0.012))
 			if _timer <= 0.0:
 				_set_state(State.ZU)
 		State.ZU:
