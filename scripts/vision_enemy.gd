@@ -69,6 +69,20 @@ func _start_chase() -> void:
 	_enter_state(State.JAGD)
 
 
+func _enter_state(next: State) -> void:
+	_state = next
+	match _state:
+		State.SCAN:
+			_timer = 0.0
+			_sweep_dir = 1.0
+		State.ALARM:
+			_timer = alarm_time
+		State.JAGD:
+			_lost_timer = 0.0
+		State.RUECKKEHR:
+			pass
+
+
 func _chase(delta: float) -> void:
 	if _fly_in_cone():
 		_last_seen = _fly_position()
