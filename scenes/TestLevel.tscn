@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/test_level.gd" id="1_level"]
+[ext_resource type="PackedScene" path="res://scenes/Fly.tscn" id="2_fly"]
+[ext_resource type="PackedScene" path="res://scenes/Wall.tscn" id="3_wall"]
+[ext_resource type="PackedScene" path="res://scenes/PatrolNPC.tscn" id="4_npc"]
+[ext_resource type="PackedScene" path="res://scenes/Door.tscn" id="5_door"]
+[ext_resource type="PackedScene" path="res://scenes/Vent.tscn" id="6_vent"]
+[ext_resource type="PackedScene" path="res://scenes/Spider.tscn" id="7_spider"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
+size = Vector2(20, 90)
+
+[node name="TestLevel" type="Node2D"]
+script = ExtResource("1_level")
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Oben" parent="Walls" instance=ExtResource("3_wall")]
+position = Vector2(0, 0)
+size = Vector2(1152, 20)
+
+[node name="Unten" parent="Walls" instance=ExtResource("3_wall")]
+position = Vector2(0, 628)
+size = Vector2(1152, 20)
+
+[node name="Links" parent="Walls" instance=ExtResource("3_wall")]
+position = Vector2(0, 20)
+size = Vector2(20, 608)
+
+[node name="RechtsOben" parent="Walls" instance=ExtResource("3_wall")]
+position = Vector2(1132, 0)
+size = Vector2(20, 60)
+
+[node name="RechtsUnten" parent="Walls" instance=ExtResource("3_wall")]
+position = Vector2(1132, 150)
+size = Vector2(20, 478)
+
+[node name="TrennwandOben" parent="Walls" instance=ExtResource("3_wall")]
+position = Vector2(566, 20)
+size = Vector2(20, 260)
+
+[node name="TrennwandUnten" parent="Walls" instance=ExtResource("3_wall")]
+position = Vector2(566, 360)
+size = Vector2(20, 268)
+
+[node name="Vent" parent="." instance=ExtResource("6_vent")]
+position = Vector2(20, 150)
+
+[node name="Door" parent="." instance=ExtResource("5_door")]
+position = Vector2(566, 280)
+
+[node name="PatrolNPC" parent="." instance=ExtResource("4_npc")]
+position = Vector2(120, 520)
+waypoints = [Vector2(120, 520), Vector2(460, 520)]
+
+[node name="Spider" parent="." instance=ExtResource("7_spider")]
+position = Vector2(780, 430)
+
+[node name="Exit" type="Area2D" parent="."]
+position = Vector2(1132, 60)
+
+[node name="Glanz" type="Polygon2D" parent="Exit"]
+color = Color(0.4, 0.9, 1, 0.5)
+polygon = PackedVector2Array(0, 0, 20, 0, 20, 90, 0, 90)
+
+[node name="Shape" type="CollisionShape2D" parent="Exit"]
+position = Vector2(10, 45)
+shape = SubResource("RectangleShape2D_exit")
+
+[node name="Fly" parent="." instance=ExtResource("2_fly")]
+position = Vector2(120, 120)
+
+[node name="Hud" type="CanvasLayer" parent="."]
+
+[node name="StaminaBar" type="ProgressBar" parent="Hud"]
+modulate = Color(0.4, 0.9, 0.4, 1)
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 220.0
+offset_bottom = 44.0
+value = 100.0
+
+[node name="Message" type="Label" parent="Hud"]
+offset_left = 276.0
+offset_top = 60.0
+offset_right = 876.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "Beobachte die Muster - dann flieg los!"
+
+[node name="Hinweise" type="Label" parent="Hud"]
+modulate = Color(0.9, 0.9, 0.9, 0.8)
+offset_left = 20.0
+offset_top = 604.0
+offset_right = 700.0
+offset_bottom = 628.0
+theme_override_font_sizes/font_size = 14
+text = "WASD/Pfeile: fliegen  |  Shift: Sprint (kostet Ausdauer)  |  R: Neustart"

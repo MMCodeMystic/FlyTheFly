@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/vision_enemy.gd" id="1_spider"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 14.0
+
+[node name="Spider" type="Node2D"]
+script = ExtResource("1_spider")
+
+[node name="Body" type="Polygon2D" parent="."]
+color = Color(0.16, 0.16, 0.2, 1)
+polygon = PackedVector2Array(0, -16, 11, -11, 16, 0, 11, 11, 0, 16, -11, 11, -16, 0, -11, -11)
+
+[node name="BeinOben" type="Polygon2D" parent="."]
+color = Color(0.1, 0.1, 0.13, 1)
+polygon = PackedVector2Array(4, -8, 28, -26, 30, -20, 8, -4)
+
+[node name="BeinUnten" type="Polygon2D" parent="."]
+color = Color(0.1, 0.1, 0.13, 1)
+polygon = PackedVector2Array(4, 8, 28, 26, 30, 20, 8, 4)
+
+[node name="Head" type="Node2D" parent="."]
+
+[node name="ConeVisual" type="Polygon2D" parent="Head"]
+color = Color(0.9, 0.3, 0.3, 0.22)
+polygon = PackedVector2Array(0, 0, -150, -55, -150, 55)
+
+[node name="VisionCone" type="Area2D" parent="Head"]
+
+[node name="Shape" type="CollisionPolygon2D" parent="Head/VisionCone"]
+polygon = PackedVector2Array(0, 0, -150, -55, -150, 55)
+
+[node name="Mouth" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Mouth"]
+shape = SubResource("CircleShape2D_1")
